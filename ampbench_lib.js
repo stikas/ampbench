@@ -388,6 +388,9 @@ class HttpBodySniffer {
                     BlogPosting:
                         this.bodyContains('"@type":"BlogPosting"') ||
                         this.jsonldScriptContains('"@type":"BlogPosting"'),
+                    LiveBlogPosting:
+                        this.bodyContains('"@type":"LiveBlogPosting"') ||
+                        this.jsonldScriptContains('"@type":"LiveBlogPosting"'),
                     WebPage:
                         this.bodyContains('"@type":"WebPage"') ||
                         this.jsonldScriptContains('"@type":"WebPage"'),
@@ -417,6 +420,9 @@ class HttpBodySniffer {
                     BlogPosting:
                         this.bodyContains('itemtype="http://schema.org/BlogPosting"') ||
                         this.bodyContains('itemtype="https://schema.org/BlogPosting"'),
+                    LiveBlogPosting:
+                        this.bodyContains('itemtype="http://schema.org/LiveBlogPosting"') ||
+                        this.bodyContains('itemtype="https://schema.org/LiveBlogPosting"'),
                     WebPage:
                         this.bodyContains('itemtype="http://schema.org/WebPage"') ||
                         this.bodyContains('itemtype="https://schema.org/WebPage"'),
@@ -436,6 +442,7 @@ class HttpBodySniffer {
                 this._contains_sd.jsonld_type.Article ||
                 this._contains_sd.jsonld_type.NewsArticle ||
                 this._contains_sd.jsonld_type.BlogPosting ||
+                this._contains_sd.jsonld_type.LiveBlogPosting ||
                 this._contains_sd.jsonld_type.VideoObject;
 
             this._jsonld_type_is_amp_news_carousel_support =
@@ -451,6 +458,7 @@ class HttpBodySniffer {
                 this._contains_sd.microdata_type.Article ||
                 this._contains_sd.microdata_type.NewsArticle ||
                 this._contains_sd.microdata_type.BlogPosting ||
+                this._contains_sd.microdata_type.LiveBlogPosting ||
                 this._contains_sd.microdata_type.VideoObject;
 
             this._microdata_type_is_amp_news_carousel_support =
@@ -498,6 +506,11 @@ class HttpBodySniffer {
                 + ( this._contains_sd.microdata_type.BlogPosting
                     ? ' BlogPosting (Microdata)' : '' )
 
+                + ( this._contains_sd.jsonld_type.LiveBlogPosting
+                    ? ' LiveBlogPosting (JSON-LD)' : '' )
+                + ( this._contains_sd.microdata_type.LiveBlogPosting
+                    ? ' LiveBlogPosting (Microdata)' : '' )
+
                 + ( this._contains_sd.jsonld_type.WebPage
                     ? ' WebPage (JSON-LD)' : '' )
                 + ( this._contains_sd.microdata_type.WebPage
@@ -532,6 +545,11 @@ class HttpBodySniffer {
                 + ( this._contains_sd.jsonld_type.BlogPosting
                     ? ' BlogPosting (JSON-LD)' : '' )
                 + ( this._contains_sd.microdata_type.BlogPosting
+                    ? ' BlogPosting (Microdata)' : '' )
+
+                + ( this._contains_sd.jsonld_type.LiveBlogPosting
+                    ? ' BlogPosting (JSON-LD)' : '' )
+                + ( this._contains_sd.microdata_type.LiveBlogPosting
                     ? ' BlogPosting (Microdata)' : '' )
 
                 + ( this._contains_sd.jsonld_type.VideoObject

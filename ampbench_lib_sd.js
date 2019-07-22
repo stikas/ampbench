@@ -44,8 +44,8 @@ const
     SD_UNKNOWN = 'Unknown, Invalid or Unavailable';
 
 const
-    AMP_SD_TYPES = ['Article', 'NewsArticle', 'BlogPosting', 'VideoObject'],
-    AMP_SD_TYPES_ARTICLE = ['Article', 'NewsArticle', 'BlogPosting'],
+    AMP_SD_TYPES = ['Article', 'NewsArticle', 'BlogPosting', 'VideoObject', 'LiveBlogPosting'],
+    AMP_SD_TYPES_ARTICLE = ['Article', 'NewsArticle', 'BlogPosting', 'LiveBlogPosting'],
     AMP_SD_TYPES_ARTICLE_COMPANIONS = ['WebPage', 'Organization', 'ImageObject'], // TODO
     AMP_SD_TYPES_RECIPE = ['Recipe'],
     AMP_SD_TYPES_WEBPAGE = ['WebPage'];
@@ -890,7 +890,7 @@ function extract_metadata_microdata_news_types(metadata) { // scan for all news 
     _md_news_found = false; // init to negative!
     metadata.json.forEach( (md_block, _md_block_index) => {
         _md_type = last_element_of_path((md_block['@type'][0]).toString());
-        if (sd_type_is_amp_article(_md_type)) { // AMP_SD_TYPES_ARTICLE = ['Article', 'NewsArticle', 'BlogPosting']
+        if (sd_type_is_amp_article(_md_type)) { // AMP_SD_TYPES_ARTICLE = ['Article', 'NewsArticle', 'BlogPosting', 'LiveBlogPosting]
             // console.log('=> _md_type: ' + _md_type);
             _md_news_found = true;
             _md_types.push(_md_type);
